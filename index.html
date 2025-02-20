@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Page Report Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>One Page Report Generator</h1>
+        <p>by Mohamad Adri bin Maili</p>
+    </header>
+
+    <main class="container">
+        <form id="reportForm" class="form">
+            <div class="form-group">
+                <label for="programName">Nama Program/Aktiviti:</label>
+                <input type="text" id="programName" name="programName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Tarikh:</label>
+                <input type="text" id="date" name="date" placeholder="DD/MM/YYYY" required 
+                       pattern="\d{2}/\d{2}/\d{4}" oninput="formatDateInput(this)">
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <label>Masa:</label>
+                <div class="time-range-input">
+                    <input type="time" id="startTime" name="startTime" required>
+                    <input type="time" id="endTime" name="endTime" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Tempat:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="targetAudience">Sasaran:</label>
+                <input type="text" id="targetAudience" name="targetAudience" required>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <label for="objectives">Objektif:</label>
+                <textarea id="objectives" name="objectives" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <label for="activities">Aktiviti:</label>
+                <textarea id="activities" name="activities" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <label for="strengths">Kekuatan:</label>
+                <textarea id="strengths" name="strengths" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <label for="weaknesses">Kelemahan:</label>
+                <textarea id="weaknesses" name="weaknesses" rows="3" required></textarea>
+            </div>
+
+            <div class="file-upload">
+                <div class="drop-zone" id="dropZone">
+                    <span>Seret dan lepas gambar di sini atau klik untuk memilih</span>
+                    <span class="selected-files" id="fileList"></span>
+                    <input type="file" class="file-input" id="images" name="images" accept="image/*" multiple required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="preparedBy">Disediakan oleh:</label>
+                <input type="text" id="preparedBy" name="preparedBy" required>
+            </div>
+
+            <div class="form-group">
+                <label for="position">Jawatan:</label>
+                <input type="text" id="position" name="position" required>
+            </div>
+
+            <button type="submit">Jana OPR</button>
+        </form>
+
+        <div id="output" class="report-output"></div>
+        <button id="downloadPdfBtn" class="download-btn" style="display: none;">Muat Turun PDF</button>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; SK Stalon One Page Report Generator</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

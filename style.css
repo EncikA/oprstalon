@@ -1,0 +1,273 @@
+/* style.css */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --background: #f8fafc;
+    --text: #1e293b;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --error: #ef4444;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.container {
+    flex: 1;
+    max-width: 794px; /* A4 width in pixels */
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Form Styles */
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.time-range-input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* File Upload Styles */
+.file-upload {
+    grid-column: span 2;
+    position: relative;
+}
+
+.drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.drop-zone.dragover {
+    border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.selected-files {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Report Output Styles */
+.report-output {
+    margin-top: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.report-header {
+    background: var(--primary);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.report-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.report-subtitle {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.report-section {
+    padding: 2rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.report-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.image-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.image-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.report-footer {
+    padding: 2rem;
+    text-align: center;
+    background: var(--background);
+    border-radius: 0 0 12px 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+    }
+
+    .file-upload {
+        grid-column: span 1;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .report-subtitle {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .report-output {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .download-btn {
+        display: none;
+    }
+
+    .report-section {
+        padding: 1rem;
+        page-break-inside: avoid;
+    }
+
+    .image-item img {
+        height: 150px;
+    }
+}
