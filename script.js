@@ -11,9 +11,9 @@ function formatTime(timeString) {
     if (!timeString) return '';
     const [hours, minutes] = timeString.split(':');
     const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'pm' : 'am';
+    const ampm = hour >= 12 ? 'PM' : 'AM';
     const twelveHour = hour % 12 || 12;
-    return `${twelveHour}:${minutes}${ampm}`.toLowerCase();
+    return `${twelveHour}:${minutes} ${ampm}`;
 }
 
 // File Upload Handlers
@@ -137,23 +137,6 @@ document.getElementById('reportForm').addEventListener('submit', async (e) => {
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = outputHTML;
 
-    // Wait for images to load
-    await new Promise(resolve => {
-        const images = outputDiv.querySelectorAll('img');
-        if (images.length === 0) return resolve();
-
-        let loadedCount = 0;
-        const imageLoaded = () => {
-            loadedCount++;
-            if (loadedCount === images.length) resolve();
-        };
-
-        images.forEach(img => {
-            if (img.complete) imageLoaded();
-            else img.addEventListener('load', imageLoaded);
-        });
-    });
-
     document.getElementById('downloadPdfBtn').style.display = 'block';
 });
 
@@ -195,8 +178,10 @@ document.getElementById('downloadPdfBtn').addEventListener('click', async () => 
     };
 
     try {
-        const worker = html2pdf().set(options).from(element);
-        await worker.save();
+        const worker = html2pdf().set(options).from(element).toPdf().get('pdf').then((pdf) => {
+            pdf.setFontSize(10);
+            pdf.text("© Sekolah Kebangsaan Stalon", 105, 280, null, null, "center");
+        }).save();
     } catch (error) {
         console.error('PDF generation failed:', error);
         alert('Error generating PDF. Please check console for details.');
